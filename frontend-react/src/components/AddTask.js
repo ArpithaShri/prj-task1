@@ -1,6 +1,5 @@
-// src/components/AddTask.js
 import React, { useState } from "react";
-import api from "../services/api";
+import { addTask } from "../services/api"; // named import
 
 const AddTask = ({ onTaskAdded }) => {
   const [title, setTitle] = useState("");
@@ -13,13 +12,15 @@ const AddTask = ({ onTaskAdded }) => {
 
     try {
       setLoading(true);
-      const res = await api.post("/tasks", { title, description });
-      onTaskAdded(res.data);
+      // addTask expects an object { title, description }
+      const task = await addTask({ title, description });
+      // backend returns the created task
+      onTaskAdded(task);
       setTitle("");
       setDescription("");
     } catch (err) {
       console.error("Error adding task:", err);
-      alert("Failed to add task.");
+      alert(err.message || "Failed to add task.");
     } finally {
       setLoading(false);
     }

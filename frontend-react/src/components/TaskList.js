@@ -1,16 +1,15 @@
-// src/components/TaskList.js
 import React from "react";
-import api from "../services/api";
+import { deleteTask } from "../services/api"; // named import
 
 const TaskList = ({ tasks, onTaskDeleted }) => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this task?")) return;
     try {
-      await api.delete(`/tasks/${id}`);
+      await deleteTask(id);
       onTaskDeleted(id);
     } catch (err) {
       console.error("Error deleting task:", err);
-      alert("Failed to delete task.");
+      alert(err.message || "Failed to delete task.");
     }
   };
 
@@ -18,7 +17,7 @@ const TaskList = ({ tasks, onTaskDeleted }) => {
     <div style={{ width: "60%", margin: "auto" }}>
       {tasks.map((task) => (
         <div
-          key={task._id}
+          key={task._id || task.id}
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -32,7 +31,7 @@ const TaskList = ({ tasks, onTaskDeleted }) => {
             <strong>{task.title}</strong>
             <p>{task.description}</p>
           </div>
-          <button onClick={() => handleDelete(task._id)}>🗑️</button>
+          <button onClick={() => handleDelete(task._id || task.id)}>🗑️</button>
         </div>
       ))}
     </div>
@@ -40,4 +39,3 @@ const TaskList = ({ tasks, onTaskDeleted }) => {
 };
 
 export default TaskList;
-

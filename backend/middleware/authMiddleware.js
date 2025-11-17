@@ -19,3 +19,4 @@ export const adminOnly = (req, res, next) => {
   }
   next();
 };
+// backend/middleware/authMiddleware.js

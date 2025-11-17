@@ -31,3 +31,4 @@ taskSchema.index({ user: 1, createdAt: -1 });
 
 // ✅ Model export
 export default mongoose.model("Task", taskSchema);
+// backend/models/Task.js

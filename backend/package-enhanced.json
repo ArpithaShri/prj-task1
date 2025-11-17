@@ -1,0 +1,36 @@
+{
+  "name": "prj-task1-enhanced",
+  "version": "2.0.0",
+  "description": "Full-Stack MERN App with WebSockets and GraphQL",
+  "type": "module",
+  "main": "server-enhanced.js",
+  "scripts": {
+    "start": "node server-enhanced.js",
+    "dev": "nodemon server-enhanced.js",
+    "build": "cd ../frontend-react && npm install && npm run build && cp -r ../frontend-react/build ./build"
+  },
+  "keywords": [
+    "mern",
+    "websockets",
+    "graphql",
+    "real-time"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "bcryptjs": "^3.0.3",
+    "cookie": "^0.6.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.3",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
